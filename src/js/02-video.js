@@ -3,15 +3,15 @@ import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
-const videoDuration = 'videoplayer-current-time';
+const VIDEO_DURATION = 'videoplayer-current-time';
 
 const onPlay = function (data) {
-  localStorage.setItem('videoDuration', data.seconds);
+  localStorage.setItem(VIDEO_DURATION, data.seconds);
 };
 
 player.on('timeupdate', throttle(onPlay, 1000));
 
-const currentTime = localStorage.getItem('videoDuration');
+const currentTime = localStorage.getItem(VIDEO_DURATION);
 if (currentTime) {
   player.setCurrentTime(currentTime);
 }
