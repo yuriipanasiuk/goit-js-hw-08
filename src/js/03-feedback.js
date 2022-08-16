@@ -5,8 +5,7 @@ const FORM_KEY = 'feedback-form-state';
 
 formRef.addEventListener('input', throttle(onInput, 500));
 formRef.addEventListener('submit', onFormSubmit);
-
-onDownloadPage();
+addEventListener('DOMContentLoaded', onDownloadPage);
 
 const formData = {};
 
@@ -21,10 +20,13 @@ function onInput() {
 function onFormSubmit(evt) {
   evt.preventDefault();
 
+  if (formRef.email.value === '' || formRef.message.value === '') {
+    alert('ПОЛЯ ФОРМИ ПОВИННІ БУТИ ЗАПОВНЕННІ !!!');
+    return;
+  }
   console.log(formData);
 
   evt.currentTarget.reset();
-
   localStorage.removeItem(FORM_KEY);
 }
 
@@ -36,6 +38,10 @@ function onDownloadPage() {
     return;
   }
 
-  formRef.email.value = localStoragePARSE.email;
-  formRef.message.value = localStoragePARSE.message;
+  const { email, message } = localStoragePARSE;
+  formData.email = email;
+  formData.message = message;
+
+  formRef.email.value = formData.email;
+  formRef.message.value = formData.message;
 }
