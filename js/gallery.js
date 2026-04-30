@@ -75,12 +75,12 @@ function createGalleryMarkup(galleryItems) {
   return galleryItems
     .map(
       ({ preview, original, description }) => `<li class="gallery-item">
-        <a class="gallery-link" href=${original}>
+        <a class="gallery-link" href="${original}">
           <img
             class="gallery-image"
-            src=${preview}
-            data-source=${original}
-            alt=${description}
+            src="${preview}"
+            data-source="${original}"
+            alt="${description}"
           />
         </a>
       </li>`
@@ -100,7 +100,7 @@ function handleGalleryLinkClick(e) {
 function createLightBox(source) {
   const instance = basicLightbox.create(
     `
-      <img src=${source} width="1112" height="640">`
+      <img src="${source}" width="1112" height="640">`
   );
 
   instance.show();
